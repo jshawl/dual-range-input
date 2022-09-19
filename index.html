@@ -1,100 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>dual-range-input</title>
-  <script type="module">
-    import DualRangeInput from './script.js'
-    DualRangeInput('.dual-range-1')
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dual-range-input</title>
+    <script type="module">
+      import DualRangeInput from "./script.js";
+      DualRangeInput(".dual-range-1");
+      DualRangeInput(".dual-range-2");
+      DualRangeInput({ selector: ".dual-range-4", debug: true });
+      DualRangeInput({
+        selector: ".dual-range-5",
+        label: (d) => Math.floor(d / 60) + ":" + (d % 60),
+      });
+    </script>
+    <link
+      async
+      rel="stylesheet"
+      href="//unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/github.min.css"
+    />
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      h1,
+      h2,
+      h3 {
+        font-weight: lighter;
+      }
+      h2 {
+        margin-top: 0;
+      }
+      section {
+        border-top: 1px solid #ccc;
+        padding: 4rem 0;
+        font-weight: lighter;
+      }
+      body {
+        margin: 2rem;
+      }
+      sup {
+        font-size: 0.8rem;
+        font-weight: normal;
+      }
+      pre {
+        border: 1px solid #ebebeb;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Dual Range Input</h1>
+    <a href="https://badge.fury.io/gh/jshawl%2Fdual-range-input"
+      ><img
+        src="https://badge.fury.io/gh/jshawl%2Fdual-range-input.svg"
+        alt="GitHub version"
+        height="18"
+    /></a>
+    <a href="https://badge.fury.io/js/dual-range-input"
+      ><img
+        src="https://badge.fury.io/js/dual-range-input.svg"
+        alt="npm version"
+        height="18"
+    /></a>
+    <br /><br />
+    <section>
+      <h2>First Example</h2>
+      <pre><code class="language-html">&lt;div class="dual-range-1">
+    &lt;input type="range" class="range-start" value="10" max="100">
+    &lt;input type="range" class="range-end" value="90" max="100">
+  &lt;/div>
+  &lt;script type="module">
+    import DualRangeInput from 'https://unpkg.com/dual-range-input@latest/script.js';
+    DualRangeInput(".dual-range-1");
+  &lt;/script></code></pre>
+
+      <div class="dual-range-1">
+        <input type="range" class="range-start" value="10" max="100" /><br />
+        <input type="range" class="range-end" value="90" max="100" />
+      </div>
+    </section>
+    <section>
+      <h2>Flexible Ranges</h2>
+      <pre><code class="language-html">&lt;div class="dual-range-2">
+    &lt;input type="range" class="range-start" value="10" max="50">
+    &lt;input type="range" class="range-end" value="40" max="50">
+  &lt;/div>
+  &lt;script type="module">
+    import DualRangeInput from 'https://unpkg.com/dual-range-input@latest/script.js';
     DualRangeInput(".dual-range-2");
-    DualRangeInput({ selector: ".dual-range-4", debug: true });
-  </script>
-<link async rel="stylesheet"
-href="//unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/github.min.css">
-  <style>
-    body{
-      font-family: sans-serif;
-    }
-    h1, h2, h3 {
-      font-weight: lighter;
-    }
-    h2{
-      margin-top: 0;
-    }
-    section {
-      border-top: 1px solid #ccc;
-      padding: 4rem 0 ;
-      font-weight: lighter;
-    }
-    body {
-      margin: 2rem;
-    }
-    sup {
-      font-size: 0.8rem;
-      font-weight: normal;
-    }
-    pre {
-      border: 1px solid #ebebeb;
-      border-radius: 5px;
-    }
-  </style>
-</head>
-<body>
+  &lt;/script></code></pre>
+      <div class="dual-range-2">
+        <input type="range" class="range-start" value="10" max="50" /><br />
+        <input type="range" class="range-end" value="40" max="50" />
+      </div>
+    </section>
+    <section>
+      <h2>Works Without JavaScript</h2>
+      <p>This code block intentionally commented out:</p>
+      <pre><code>// DualRangeInput(".dual-range-3");</code></pre>
 
-<h1>Dual Range Input</h1>
-<a href="https://badge.fury.io/js/dual-range-input"><img src="https://badge.fury.io/js/dual-range-input.svg" alt="npm version" height="18"></a>
-<br /><br />
-<section>
-<h2>First Example</h2>
-<pre><code class="language-html">&lt;div class="dual-range-1">
-  &lt;input type="range" class="range-start" value="10" max="100">
-  &lt;input type="range" class="range-end" value="90" max="100">
-&lt;/div>
-&lt;script type="module">
-  import DualRangeInput from 'https://unpkg.com/dual-range-input@latest/script.js';
-  DualRangeInput(".dual-range-1");
-&lt;/script></code></pre>
-
-<div class="dual-range-1">
-  <input type="range" class="range-start" value="10" max="100"><br />
-  <input type="range" class="range-end" value="90" max="100">
-</div>
-</section>
-<section>
-<h2>Flexible Ranges</h2>
-<pre><code class="language-html">&lt;div class="dual-range-2">
-  &lt;input type="range" class="range-start" value="10" max="50">
-  &lt;input type="range" class="range-end" value="40" max="50">
-&lt;/div>
-&lt;script type="module">
-  import DualRangeInput from 'https://unpkg.com/dual-range-input@latest/script.js';
-  DualRangeInput(".dual-range-2");
-&lt;/script></code></pre>
-<div class="dual-range-2">
-  <input type="range" class="range-start" value="10" max="50"><br />
-  <input type="range" class="range-end" value="40" max="50">
-</div>
-</section>
-<section>
-<h2>Works Without JavaScript</h2>
-<pre><code>// DualRangeInput(".dual-range-3");</code></pre>
-<div class="dual-range-3">
-  <input type="range" class="range-start" value="10" max="100"><br />
-  <input type="range" class="range-end" value="90" max="100">
-</div>
-</section>
-<section>
-<h2>Reactive &amp; Accessible</h2>
-<pre><code>DualRangeInput({ selector: ".dual-range-4", debug: true });</code></pre>
-<div class="dual-range-4">
-  <input type="range" class="range-start" value="10" max="100"><br />
-  <input type="range" class="range-end" value="90" max="100">
-</div>
-</section>
-<script src="//unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
-
-<script>hljs.highlightAll()</script>
-</body>
+      <div class="dual-range-3">
+        <input type="range" class="range-start" value="10" max="100" /><br />
+        <input type="range" class="range-end" value="90" max="100" />
+      </div>
+    </section>
+    <section>
+      <h2>Reactive &amp; Accessible</h2>
+      <pre><code>DualRangeInput({ selector: ".dual-range-4", debug: true });</code></pre>
+      <div class="dual-range-4">
+        <input type="range" class="range-start" value="10" max="100" /><br />
+        <input
+          type="range"
+          class="range-end"
+          value="90"
+          max="100"
+        /><br /><br />
+      </div>
+    </section>
+    <section>
+      <h2>Custom Labels</h2>
+      <pre><code>DualRangeInput({
+  selector: ".dual-range-5",
+  label: d => Math.floor(d/60) + ":" + d % 60
+});</code></pre>
+      <div class="dual-range-5">
+        <input type="range" class="range-start" value="10" max="420" /><br />
+        <input type="range" class="range-end" value="90" max="420" />
+      </div>
+    </section>
+    <script src="//unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+  </body>
 </html>
