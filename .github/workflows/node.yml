@@ -27,4 +27,4 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm test
-      - run: git diff origin/main CHANGELOG.md
+      - run: git diff main CHANGELOG.md
