@@ -1,6 +1,6 @@
 {
   "name": "dual-range-input",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "<input type='range' /> with two inputs",
   "main": "script.js",
   "scripts": {
