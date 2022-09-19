@@ -1,8 +1,48 @@
 var DualRangeInput = function (opts) {
+  const styles = document.createElement('style');
+  styles.innerHTML=`
+  .ui {
+    background: #e9e9ed;
+    border: 1px solid #8f8f9d;
+    height: 4px;
+    position: relative;
+    border-radius: 30px;
+    width: 160px;
+  }
+  
+  .middle {
+    height: 5px;
+    width: 100px;
+    background: #007aff;
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .ui .start,
+  .ui .end {
+    position: absolute;
+    background: #676774;
+    top: 50%;
+    border: 2px solid white;
+    cursor: col-resize;
+    height: 18px;
+    line-height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    text-align: center;
+    user-select: none;
+    color: white;
+    transform: translate(-50%, -50%);
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
+    font-size: 0.8rem;
+    z-index: 10;
+  }
+  `
+
   const root = document.querySelector(opts.selector || opts);
+  root.appendChild(styles);
   const rangeStart = root.querySelector(".range-start");
   const rangeEnd = root.querySelector(".range-end");
-  let mouseDownX = 0;
   let dragging = false;
 
   setup(rangeStart);
@@ -49,7 +89,6 @@ var DualRangeInput = function (opts) {
 
   function onMouseDown(e) {
     dragging = e.target;
-    mouseDownX = e.x;
   }
 
   function onMouseUp(e) {
@@ -65,7 +104,6 @@ var DualRangeInput = function (opts) {
   function onMouseMove(e) {
     if (!dragging) return;
     if (dragging.getAttribute("type") === "range") return;
-    console.log("dragging?", dragging);
     const total = ui.clientWidth;
     const mouseMoveX = e.clientX - ui.offsetLeft;
     const percent = Math.floor((100 * mouseMoveX) / total);
