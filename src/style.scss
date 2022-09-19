@@ -1,0 +1,62 @@
+.range-wrap {
+  position: relative;
+  margin: 0 auto 3rem;
+  border: 1px solid blue;
+}
+.range {
+  width: 100%;
+}
+
+h2 {
+  border-top: 1px solid black;
+  padding-top: 1.5rem;
+  font-weight: lighter;
+}
+body {
+  margin: 2rem;
+}
+sup {
+  font-size: 0.8rem;
+  font-weight: normal;
+}
+.ui {
+  background: #e9e9ed;
+  border: 1px solid #8f8f9d;
+  height: 4px;
+  position: relative;
+  border-radius: 30px;
+}
+
+.middle {
+  height: 5px;
+  width: 100px;
+  background: #007aff;
+  position: absolute;
+  z-index: 1;
+}
+
+.ui .start,
+.ui .end {
+  position: absolute;
+  background: #676774;
+  top: 50%;
+  border: 2px solid white;
+  cursor: col-resize;
+  height: 18px;
+  line-height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  text-align: center;
+  user-select: none;
+  color: white;
+  transform: translate(-50%, -50%);
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
+  font-size: 0.8rem;
+  z-index: 10;
+}
+
+pre {
+  background: #ebebeb;
+  padding: 0.5rem;
+  overflow: scroll;
+}
