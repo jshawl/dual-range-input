@@ -8,14 +8,24 @@
   <script type="module">
     import DualRangeInput from './script.js'
     DualRangeInput('.dual-range-1')
-    DualRangeInput({ selector: ".dual-range-2", debug: true });
+    DualRangeInput(".dual-range-2");
     DualRangeInput({ selector: ".dual-range-4", debug: true });
   </script>
-  <script></script>
+<link async rel="stylesheet"
+href="//unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/github.min.css">
   <style>
-    h2 {
-      border-top: 1px solid black;
-      padding-top: 1.5rem;
+    body{
+      font-family: sans-serif;
+    }
+    h1, h2, h3 {
+      font-weight: lighter;
+    }
+    h2{
+      margin-top: 0;
+    }
+    section {
+      border-top: 1px solid #ccc;
+      padding: 4rem 0 ;
       font-weight: lighter;
     }
     body {
@@ -26,46 +36,63 @@
       font-weight: normal;
     }
     pre {
-      background: #ebebeb;
-      padding: 0.5rem;
-      overflow: scroll;
+      border: 1px solid #ebebeb;
+      border-radius: 5px;
     }
   </style>
 </head>
 <body>
 
-<h1>Dual Range Input <sup>(alpha)</sup></h1>
-
+<h1>Dual Range Input</h1>
+<section>
 <h2>First Example</h2>
-<pre><code>DualRangeInput(".dual-range-1");</code></pre>
+<pre><code class="language-html">&lt;div class="dual-range-1">
+  &lt;input type="range" class="range-start" value="10" max="100">
+  &lt;input type="range" class="range-end" value="90" max="100">
+&lt;/div>
+&lt;script type="module">
+  import DualRangeInput from 'https://unpkg.com/dual-range-input@latest/script.js';
+  DualRangeInput(".dual-range-1");
+&lt;/script></code></pre>
 
 <div class="dual-range-1">
   <input type="range" class="range-start" value="10" max="100"><br />
   <input type="range" class="range-end" value="90" max="100">
 </div>
-<script></script>
-
+</section>
+<section>
 <h2>Flexible Ranges</h2>
-<pre><code>DualRangeInput(".dual-range-2");</code></pre>
-
+<pre><code class="language-html">&lt;div class="dual-range-2">
+  &lt;input type="range" class="range-start" value="10" max="50">
+  &lt;input type="range" class="range-end" value="40" max="50">
+&lt;/div>
+&lt;script type="module">
+  import DualRangeInput from 'https://unpkg.com/dual-range-input@latest/script.js';
+  DualRangeInput(".dual-range-2");
+&lt;/script></code></pre>
 <div class="dual-range-2">
   <input type="range" class="range-start" value="10" max="50"><br />
   <input type="range" class="range-end" value="40" max="50">
 </div>
-
+</section>
+<section>
 <h2>Works Without JavaScript</h2>
 <pre><code>// DualRangeInput(".dual-range-3");</code></pre>
 <div class="dual-range-3">
   <input type="range" class="range-start" value="10" max="100"><br />
   <input type="range" class="range-end" value="90" max="100">
 </div>
-
+</section>
+<section>
 <h2>Reactive &amp; Accessible</h2>
 <pre><code>DualRangeInput({ selector: ".dual-range-4", debug: true });</code></pre>
 <div class="dual-range-4">
   <input type="range" class="range-start" value="10" max="100"><br />
   <input type="range" class="range-end" value="90" max="100">
 </div>
+</section>
+<script src="//unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
 
+<script>hljs.highlightAll()</script>
 </body>
 </html>
