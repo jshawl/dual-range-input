@@ -1,6 +1,16 @@
 export default function (opts) {
-  const styles = document.createElement('style');
-  styles.innerHTML=`
+  if (typeof opts == "string") {
+    opts = {
+      selector: opts,
+    };
+  }
+  opts.label =
+    opts.label ||
+    function (d) {
+      return d;
+    };
+  const styles = document.createElement("style");
+  styles.innerHTML = `
   .ui {
     background: #e9e9ed;
     border: 1px solid #8f8f9d;
@@ -31,15 +41,19 @@ export default function (opts) {
     border-radius: 50%;
     text-align: center;
     user-select: none;
-    color: white;
     transform: translate(-50%, -50%);
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
     font-size: 0.8rem;
     z-index: 10;
   }
-  `
+  .ui .start span,
+  .ui .end span {
+    transform: translateY(-100%);
+    display: inline-block;
+  }
+  `;
 
-  const root = document.querySelector(opts.selector || opts);
+  const root = document.querySelector(opts.selector);
   root.appendChild(styles);
   const rangeStart = root.querySelector(".range-start");
   const rangeEnd = root.querySelector(".range-end");
@@ -48,9 +62,9 @@ export default function (opts) {
   setup(rangeStart);
   setup(rangeEnd);
 
-  root.addEventListener("mousedown", onMouseDown);
-  addEventListener("mouseup", onMouseUp);
-  addEventListener("mousemove", onMouseMove);
+  root.addEventListener("pointerdown", onMouseDown);
+  addEventListener("pointerup", onMouseUp);
+  addEventListener("pointermove", onMouseMove);
 
   const ui = createAndAddElement("div", "ui", root);
   const uiStart = createAndAddElement("div", "start", ui);
@@ -66,19 +80,21 @@ export default function (opts) {
   }
 
   function render() {
-    uiStart.innerHTML = rangeStart.value;
-    const startPercent = (100 * rangeStart.value) / rangeStart.getAttribute("max");
-    const endPercent = (100 * rangeEnd.value) / rangeEnd.getAttribute("max")
+    const startPercent =
+      (100 * rangeStart.value) / rangeStart.getAttribute("max");
+    const endPercent = (100 * rangeEnd.value) / rangeEnd.getAttribute("max");
+    uiStart.innerHTML = "<span>" + opts.label(rangeStart.value) + "</span>";
+    uiEnd.innerHTML = "<span>" + opts.label(rangeEnd.value) + "</span>";
+
     uiStart.style.left = startPercent + "%";
     middle.style.left = startPercent + "%";
-    uiEnd.style.left =  endPercent + "%";
+    uiEnd.style.left = endPercent + "%";
 
     middle.style.width = endPercent - startPercent + "%";
     middle.style.transform =
-        parseInt(rangeStart.value) > rangeEnd.value
-          ? "translateX(-100%)"
-          : "translateX(0)";
-    uiEnd.innerHTML = rangeEnd.value;
+      parseInt(rangeStart.value) > rangeEnd.value
+        ? "translateX(-100%)"
+        : "translateX(0)";
   }
 
   function createAndAddElement(tagName, classList, parent) {
@@ -108,7 +124,7 @@ export default function (opts) {
     const total = ui.clientWidth;
     const mouseMoveX = e.clientX - ui.offsetLeft;
     const percent = Math.floor((100 * mouseMoveX) / total);
-    const tr = targetRange(e.target)
+    const tr = targetRange(e.target);
     tr.value = (percent / 100) * tr.getAttribute("max");
     render();
     onChange(e);
@@ -126,4 +142,4 @@ export default function (opts) {
     }
     render();
   }
-};
+}
