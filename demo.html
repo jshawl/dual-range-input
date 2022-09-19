@@ -5,7 +5,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@uicandy/dual-range-input</title>
-  
+  <script type="module">
+    import DualRangeInput from './script.js'
+    DualRangeInput('.dual-range-1')
+    DualRangeInput({ selector: ".dual-range-2", debug: true });
+    DualRangeInput({ selector: ".dual-range-4", debug: true });
+  </script>
+  <script></script>
   <style>
     h2 {
       border-top: 1px solid black;
@@ -37,6 +43,7 @@
   <input type="range" class="range-start" value="10" max="100"><br />
   <input type="range" class="range-end" value="90" max="100">
 </div>
+<script></script>
 
 <h2>Flexible Ranges</h2>
 <pre><code>DualRangeInput(".dual-range-2");</code></pre>
@@ -59,6 +66,6 @@
   <input type="range" class="range-start" value="10" max="100"><br />
   <input type="range" class="range-end" value="90" max="100">
 </div>
-<script src="script.js"></script>
+
 </body>
 </html>

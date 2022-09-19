@@ -1,4 +1,4 @@
-var DualRangeInput = function (opts) {
+export default function (opts) {
   const styles = document.createElement('style');
   styles.innerHTML=`
   .ui {
@@ -125,7 +125,3 @@ var DualRangeInput = function (opts) {
     render();
   }
 };
-
-DualRangeInput(".dual-range-1");
-DualRangeInput({ selector: ".dual-range-2", debug: true });
-DualRangeInput({ selector: ".dual-range-4", debug: true });
