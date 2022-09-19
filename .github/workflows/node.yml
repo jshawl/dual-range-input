@@ -27,4 +27,4 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm test
-      - run: git diff --quiet CHANGELOG.md
+      - run: git diff --quiet CHANGELOG.md && exit 1
