@@ -133,7 +133,7 @@ export default function (opts) {
   let listeners = {}
 
   function onChange(e) {
-    if(listeners.change){
+    if(typeof listeners.change === "function"){
       listeners.change(e,{
         start: rangeStart.value,
         end: rangeEnd.value
@@ -155,7 +155,6 @@ export default function (opts) {
   }
 
   return {
-    on,
-    listeners
+    on
   }
 }
