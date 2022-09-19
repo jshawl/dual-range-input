@@ -67,17 +67,18 @@ export default function (opts) {
 
   function render() {
     uiStart.innerHTML = rangeStart.value;
-    uiStart.style.left = rangeStart.value + "%";
-    middle.style.left = rangeStart.value + "%";
-    middle.style.width = rangeEnd.value - rangeStart.value + "%";
-    if (!opts.ordinal) {
-      middle.style.transform =
+    const startPercent = (100 * rangeStart.value) / rangeStart.getAttribute("max");
+    const endPercent = (100 * rangeEnd.value) / rangeEnd.getAttribute("max")
+    uiStart.style.left = startPercent + "%";
+    middle.style.left = startPercent + "%";
+    uiEnd.style.left =  endPercent + "%";
+
+    middle.style.width = endPercent - startPercent + "%";
+    middle.style.transform =
         parseInt(rangeStart.value) > rangeEnd.value
           ? "translateX(-100%)"
           : "translateX(0)";
-    }
     uiEnd.innerHTML = rangeEnd.value;
-    uiEnd.style.left = rangeEnd.value + "%";
   }
 
   function createAndAddElement(tagName, classList, parent) {
@@ -107,7 +108,8 @@ export default function (opts) {
     const total = ui.clientWidth;
     const mouseMoveX = e.clientX - ui.offsetLeft;
     const percent = Math.floor((100 * mouseMoveX) / total);
-    targetRange(e.target).value = percent;
+    const tr = targetRange(e.target)
+    tr.value = (percent / 100) * tr.getAttribute("max");
     render();
     onChange(e);
   }
