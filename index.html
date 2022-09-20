@@ -19,6 +19,14 @@
       }).on('change', (e, {start, end}) => {
         console.debug({e, start, end})
       })
+      DualRangeInput({
+  selector: ".dual-range-7",
+}).update({
+  start: 22,
+  end: 25,
+  max: 29,
+  min: 19
+})
     </script>
     <link
       async
@@ -153,6 +161,21 @@
   console.debug({e, start, end})
 }))</code></pre>
       <div class="dual-range-6">
+        <input type="range" class="range-start" value="10" max="100" /><br />
+        <input type="range" class="range-end" value="90" max="100" />
+      </div>
+    </section>
+    <section>
+      <h3>DOM Manipulation</h3>
+      <pre><code class="language-js">DualRangeInput({
+  selector: ".dual-range-7",
+}).update({
+  start: 22,
+  end: 25,
+  max: 29,
+  min: 19
+})</code></pre>
+      <div class="dual-range-7">
         <input type="range" class="range-start" value="10" max="100" /><br />
         <input type="range" class="range-end" value="90" max="100" />
       </div>
