@@ -130,8 +130,15 @@ export default function (opts) {
     onChange(e);
   }
 
+  let listeners = {};
+
   function onChange(e) {
-    if (!dragging) return;
+    if (typeof listeners.change === "function") {
+      listeners.change(e, {
+        start: rangeStart.value,
+        end: rangeEnd.value,
+      });
+    }
     const tr = targetRange(e.target);
     const condition = parseInt(rangeEnd.value) <= rangeStart.value;
     if (tr.classList.contains("range-end") && condition) {
@@ -142,4 +149,12 @@ export default function (opts) {
     }
     render();
   }
+
+  function on(name, callback) {
+    listeners[name] = callback;
+  }
+
+  return {
+    on,
+  };
 }

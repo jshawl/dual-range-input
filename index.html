@@ -14,6 +14,11 @@
         selector: ".dual-range-5",
         label: (d) => Math.floor(d / 60) + ":" + (d % 60),
       });
+      DualRangeInput({
+        selector: ".dual-range-6",
+      }).on('change', (e, {start, end}) => {
+        console.debug({e, start, end})
+      })
     </script>
     <link
       async
@@ -29,12 +34,8 @@
       h3 {
         font-weight: lighter;
       }
-      h2 {
-        margin-top: 0;
-      }
       section {
-        border-top: 1px solid #ccc;
-        padding: 4rem 0;
+        padding: 1rem 0;
         font-weight: lighter;
       }
       body {
@@ -64,52 +65,66 @@
         alt="npm version"
         height="18"
     /></a>
-    <br /><br />
+    <br><br><br>
+    <h2>Examples</h2>
     <section>
-      <h2>First Example</h2>
+      <h3>Hello World</h3>
       <pre><code class="language-html">&lt;div class="dual-range-1">
-    &lt;input type="range" class="range-start" value="10" max="100">
-    &lt;input type="range" class="range-end" value="90" max="100">
-  &lt;/div>
-  &lt;script type="module">
-    import DualRangeInput from 'https://unpkg.com/dual-range-input@latest/script.js';
-    DualRangeInput(".dual-range-1");
-  &lt;/script></code></pre>
+  &lt;input type="range" class="range-start" value="10" max="100">
+  &lt;input type="range" class="range-end" value="90" max="100">
+&lt;/div>
+&lt;script type="module">
+  import DualRangeInput from 'https://unpkg.com/dual-range-input@latest/script.js';
+  DualRangeInput(".dual-range-1");
+&lt;/script></code></pre>
 
       <div class="dual-range-1">
         <input type="range" class="range-start" value="10" max="100" /><br />
         <input type="range" class="range-end" value="90" max="100" />
       </div>
+      <br>
+      <a href="https://codepen.io/jshawl/pen/WNJjPRv">Edit on Codepen ↗</a>
     </section>
     <section>
-      <h2>Flexible Ranges</h2>
+      <h3>Flexible Ranges</h3>
       <pre><code class="language-html">&lt;div class="dual-range-2">
-    &lt;input type="range" class="range-start" value="10" max="50">
-    &lt;input type="range" class="range-end" value="40" max="50">
-  &lt;/div>
-  &lt;script type="module">
-    import DualRangeInput from 'https://unpkg.com/dual-range-input@latest/script.js';
-    DualRangeInput(".dual-range-2");
-  &lt;/script></code></pre>
+  &lt;input type="range" class="range-start" value="10" max="50">
+  &lt;input type="range" class="range-end" value="40" max="50">
+&lt;/div>
+&lt;script type="module">
+  import DualRangeInput from 'https://unpkg.com/dual-range-input@latest/script.js';
+  DualRangeInput(".dual-range-2");
+&lt;/script></code></pre>
       <div class="dual-range-2">
         <input type="range" class="range-start" value="10" max="50" /><br />
         <input type="range" class="range-end" value="40" max="50" />
       </div>
     </section>
     <section>
-      <h2>Works Without JavaScript</h2>
-      <p>This code block intentionally commented out:</p>
-      <pre><code>// DualRangeInput(".dual-range-3");</code></pre>
-
+      <h3>Works Without JavaScript</h3>
+      <p>It's just two regular inputs in disguise: 🙈</p>
+      <pre><code class="language-html">&lt;div>
+  &lt;input type="range" class="range-start" value="10" max="50">
+  &lt;input type="range" class="range-end" value="40" max="50">
+&lt;/div>
+&lt;script type="module">
+  // DualRangeInput(".dual-range-3");
+&lt;/script></code></pre>
       <div class="dual-range-3">
         <input type="range" class="range-start" value="10" max="100" /><br />
         <input type="range" class="range-end" value="90" max="100" />
       </div>
     </section>
     <section>
-      <h2>Reactive &amp; Accessible</h2>
-      <pre><code>DualRangeInput({ selector: ".dual-range-4", debug: true });</code></pre>
-      <div class="dual-range-4">
+      <h3>Reactive &amp; Accessible</h3>
+      <pre><code class="language-html">&lt;div class="dual-range-4">
+  &lt;input type="range" class="range-start" value="10" max="100">
+  &lt;input type="range" class="range-end" value="90" max="100">
+&lt;/div>
+&lt;script type="module">
+  import DualRangeInput from 'https://unpkg.com/dual-range-input@latest/script.js';
+  DualRangeInput({ selector: ".dual-range-4", debug: true });
+&lt;/script></code></pre>      <div class="dual-range-4">
         <input type="range" class="range-start" value="10" max="100" /><br />
         <input
           type="range"
@@ -120,14 +135,26 @@
       </div>
     </section>
     <section>
-      <h2>Custom Labels</h2>
-      <pre><code>DualRangeInput({
+      <h3>Custom Labels</h3>
+      <pre><code class="language-js">DualRangeInput({
   selector: ".dual-range-5",
   label: d => Math.floor(d/60) + ":" + d % 60
 });</code></pre>
       <div class="dual-range-5">
         <input type="range" class="range-start" value="10" max="420" /><br />
         <input type="range" class="range-end" value="90" max="420" />
+      </div>
+    </section>
+    <section>
+      <h3>Change Events</h3>
+      <pre><code class="language-js">DualRangeInput({
+  selector: ".dual-range-6",
+}).on('change', (e, {start, end} => {
+  console.debug({e, start, end})
+}))</code></pre>
+      <div class="dual-range-6">
+        <input type="range" class="range-start" value="10" max="100" /><br />
+        <input type="range" class="range-end" value="90" max="100" />
       </div>
     </section>
     <script src="//unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
