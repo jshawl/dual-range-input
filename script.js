@@ -142,10 +142,10 @@ export default function (opts) {
     const tr = targetRange(e.target);
     const condition = parseInt(rangeEnd.value) <= rangeStart.value;
     if (tr.classList.contains("range-end") && condition) {
-      rangeStart.value = rangeEnd.value;
+      update({start: rangeEnd.value})
     }
     if (tr.classList.contains("range-start") && condition) {
-      rangeEnd.value = rangeStart.value;
+      update({end: rangeStart.value})
     }
     render();
   }
@@ -154,7 +154,26 @@ export default function (opts) {
     listeners[name] = callback;
   }
 
+  function update(opts){
+    if(opts.start){
+      rangeStart.value = opts.start
+    }
+    if(opts.end){
+      rangeEnd.value = opts.end
+    }
+    if(opts.min){
+      rangeStart.setAttribute("min", opts.min)
+      rangeEnd.setAttribute("min", opts.min)
+    }
+    if(opts.max){
+      rangeStart.setAttribute("max", opts.max)
+      rangeEnd.setAttribute("max", opts.max)
+    }
+    render()
+  }
+
   return {
     on,
+    update
   };
 }

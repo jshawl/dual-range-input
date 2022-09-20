@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `.update({start, end, min, max})` method and DOM Manipulation example
+
 ## [0.1.0] - 2022-09-19
 
 - add .on(eventName, callback) to dispatch events
