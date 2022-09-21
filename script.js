@@ -1,3 +1,57 @@
+export const css = `
+.ui {
+  background: #e9e9ed;
+  border: 1px solid #8f8f9d;
+  height: 4px;
+  position: relative;
+  border-radius: 30px;
+  width: 160px;
+}
+
+.ui:hover {
+  border-color: #676774;
+  background: #D0D0D7;
+}
+
+.middle {
+  height: 5px;
+  width: 100px;
+  background: #007aff;
+  position: absolute;
+  z-index: 0;
+}
+
+.ui .start,
+.ui .end {
+  position: absolute;
+  background: #676774;
+  top: 50%;
+  border: 2px solid white;
+  height: 16px;
+  line-height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  text-align: center;
+  user-select: none;
+  transform: translate(-50%, -50%);
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
+  font-size: 0.8rem;
+  z-index: 1;
+}
+.ui .start span,
+.ui .end span {
+  transform: translateY(-100%);
+  display: none;
+}
+.ui .active:not(.middle) {
+  background: #007aff;
+  z-index: 2;
+}
+.ui .active span {
+  display: inline-block;
+}
+`
+
 export default function (opts) {
   if (typeof opts == "string") {
     opts = {
@@ -10,48 +64,7 @@ export default function (opts) {
       return d;
     };
   const styles = document.createElement("style");
-  styles.innerHTML = `
-  .ui {
-    background: #e9e9ed;
-    border: 1px solid #8f8f9d;
-    height: 4px;
-    position: relative;
-    border-radius: 30px;
-    width: 160px;
-  }
-  
-  .middle {
-    height: 5px;
-    width: 100px;
-    background: #007aff;
-    position: absolute;
-    z-index: 1;
-  }
-  
-  .ui .start,
-  .ui .end {
-    position: absolute;
-    background: #676774;
-    top: 50%;
-    border: 2px solid white;
-    cursor: col-resize;
-    height: 18px;
-    line-height: 18px;
-    width: 18px;
-    border-radius: 50%;
-    text-align: center;
-    user-select: none;
-    transform: translate(-50%, -50%);
-    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
-    font-size: 0.8rem;
-    z-index: 10;
-  }
-  .ui .start span,
-  .ui .end span {
-    transform: translateY(-100%);
-    display: inline-block;
-  }
-  `;
+  styles.innerHTML = css;
 
   const root = document.querySelector(opts.selector);
   root.appendChild(styles);
@@ -106,9 +119,11 @@ export default function (opts) {
 
   function onMouseDown(e) {
     dragging = e.target;
+    dragging.classList?.add('active')
   }
 
   function onMouseUp(e) {
+    dragging.classList?.remove('active')
     dragging = false;
   }
 
